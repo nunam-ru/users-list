@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 100%;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+tr.table__row, td{
+    border-top: 1pt solid #F7F7F7;
+    border-spacing: 0px;
+    padding: 10px 0 20px 0;
+    color: #ACACAC; 
+}
+
+.table__header{
+    font-size: 80%;
+}
+
+th {
+    /*border-bottom: 1pt solid #F7F7F7;*/
+    padding: 0 0 20px 0;
+    color: #9EAAB4;
+    font-weight: 500;
+    text-align: start;
+}
+
+.table__username {
+    font-weight: 700;
+    color: #0CB4F1;
+}
+
+.page__title {
+    font-size: 120%;
+}
+
+/* .link {
+    text-decoration: none;
+    color: inherit;
+} */
+
+body {
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
+    height: 100vh;
+    background-color: #F7F7F7;
+}
+
+main {
+    max-width: 1440px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 1.9rem;
+}
+
+.search__container {
+    width: 100%;
+    background-color: #FFFFFF;
+    border-radius: 7px;
+    box-shadow: 0px 18px 15px rgba(0.5791666507720947, 0.5791666507720947, 0.5791666507720947, 0.15000000596046448);
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.search__field {
+    background-color: #ECEFF0;
+    border-radius: 4px;
+    width: 100%;
+    height: 35px;
+    padding: 5px;
+}
+
+.search__reset {
+    background-color: transparent;
+    font-weight: 500;
+    margin-top: 25px;
+}
+
+.table__container {
+    background-color: #FFFFFF;
+    border-radius: 7px;
+    padding: 15px 15px 0 15px;
+}
+
+.data__table {
+    width: 100%;
+    border-collapse: collapse;
+    /* border-spacing: 0 1em; */
+}
+
+.sort__container{
+    display: flex;
+    margin: 75px 0px 15px 0px;
+    color: #9EAAB4;
+    font-size: 10pt;
+}
+
+.sort {
+    color: #333333;
+    background-color: transparent;
+    border-bottom: 1px dashed;
+    margin: 0 4px 0 4px;
+    font-weight: 500;
+}
+
+.row_delete {
+    background-color: transparent;
+    vertical-align: middle;
+}
+
+.img__clean {
+    height: 100%;
+    vertical-align: middle;
+}
+
+.table__id {
+    display: none;
+}
+
+.tableFooter {
+    background-color: transparent;
+    padding: 8px 0px;
+    width: 100%;
+    font-weight: 500;
+    text-align: left;
+    font-size: 12pt;
+    color: #333333;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+border: none;
+padding: 7px 14px;
+border-radius: 7px;
+cursor: pointer;
+margin-right: 4px;
+margin-left: 4px;
+}
+
+.activeButton {
+color: white;
+background: #0CB4F1;
+}
+
+.inactiveButton {
+color: #333333;
+background: #F7F7F7;
+}
