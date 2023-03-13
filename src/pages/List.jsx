@@ -113,8 +113,8 @@ export const List = () => {
                     y = getDateById(y_id)
                 }
                 else {
-                    x = rows[i].getElementsByTagName("TD")[n].innerHTML.toLowerCase();
-                    y = rows[i + 1].getElementsByTagName("TD")[n].innerHTML.toLowerCase();
+                    x = parseInt(rows[i].getElementsByTagName("TD")[n].innerHTML.toLowerCase());
+                    y = parseInt(rows[i + 1].getElementsByTagName("TD")[n].innerHTML.toLowerCase());
                 }
 
                 if (isAscending || n === 0) {
