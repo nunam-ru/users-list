@@ -20,7 +20,6 @@ tr.table__row, td{
 }
 
 th {
-    /*border-bottom: 1pt solid #F7F7F7;*/
     padding: 0 0 20px 0;
     color: #9EAAB4;
     font-weight: 500;
@@ -36,11 +35,6 @@ th {
     font-size: 120%;
 }
 
-/* .link {
-    text-decoration: none;
-    color: inherit;
-} */
-
 body {
     display: grid;
     grid-template-rows: min-content 1fr min-content;
@@ -49,7 +43,7 @@ body {
 }
 
 main {
-    max-width: 1440px;
+    max-width: 1280px;
     margin: 0 auto;
     box-sizing: border-box;
     padding: 1.9rem;
@@ -87,7 +81,6 @@ main {
 .data__table {
     width: 100%;
     border-collapse: collapse;
-    /* border-spacing: 0 1em; */
 }
 
 .sort__container{
@@ -151,4 +144,64 @@ background: #0CB4F1;
 .inactiveButton {
 color: #333333;
 background: #F7F7F7;
+}
+
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+}
+
+.modal__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30rem;
+    height: 10rem;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+}
+
+.modal__title {
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+.modal__body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+
+.modal__button {
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.button__yes {
+    background-color: #E0E0E0;
+    color: #828282;
+}
+
+.button__no {
+    background-color: #0CB4F1;
+    color: #FFFFFF;
+}
+
+.deleted {
+    display: none;
 }

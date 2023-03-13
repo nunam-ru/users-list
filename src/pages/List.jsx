@@ -3,16 +3,21 @@ import API from '../server/api';
 import '../index.css';
 import Table from '../components/Table/Table.jsx';
 import SearchForm from '../components/SearchForm/SearchForm';
+import Modal from '../components/Modal/Modal';
 
 //Главная страницы
 export const List = () => {
 
     const [data, setData] = useState(Array);
+    const [date, setDate] = useState(Array);
     const [query, setQuery] = useState(String);
     
     const [isLoadingData, setLoadingData] = useState(Boolean);
     const [isSearching, setSearching] = useState(Boolean);
     const [isSorting, setSorting] = useState(Boolean);
+
+    const [show, setShow] = useState(Boolean);
+    const [id, setId] = useState('');
 
     //Получаем данные
     async function fetchData() { 
@@ -30,7 +35,15 @@ export const List = () => {
 
             }
         }));
+
+        const date_element = await Promise.all(data.map(async (data_item) => {
+            return {
+                id: data_item.id,
+                registration_date: new Date(data_item.registration_date),
+            }
+        }));
         
+        setDate([...date_element]);
         setData([...element]);
         setLoadingData(false);
     } 
@@ -45,9 +58,9 @@ export const List = () => {
         var rows = document.querySelector(".data__table tbody").rows;
         
         for (var i = 1; i < rows.length; i++) {
-            var usernames = rows[i].cells[0].textContent.toUpperCase();
-            var emails = rows[i].cells[1].textContent.toUpperCase();
-            if (usernames.indexOf(filter) > -1 || emails.indexOf(filter) > -1) {
+            var usernames = rows[i].cells[1].textContent.toUpperCase();
+            var emails = rows[i].cells[2].textContent.toUpperCase();
+            if ((usernames.indexOf(filter) > -1 || emails.indexOf(filter) > -1) && !(rows[i].classList.contains("deleted"))) {
                 rows[i].style.display = "";
             } else {
                 rows[i].style.display = "none";
@@ -66,7 +79,7 @@ export const List = () => {
     //Функция для получения удобного для сортировки формата даты
     function getDateById(id) {
         var regdate;
-        for (const el of data) {
+        for (const el of date) {
             if (parseInt(el.id) === parseInt(id)) {
                 regdate = el.registration_date;
             }
@@ -92,7 +105,7 @@ export const List = () => {
             rows = table.rows;
             for (i = 1; i < (rows.length - 1); i++) {
                 shouldSwitch = false;
-
+                
                 if (isDate) {
                     x_id = rows[i].getElementsByTagName("TD")[0].innerHTML;
                     y_id = rows[i + 1].getElementsByTagName("TD")[0].innerHTML;
@@ -129,12 +142,25 @@ export const List = () => {
             }
         }
     }
+
+    function deleteElement(id) {
+        document.getElementById(id).classList.add("deleted");
+
+        var i = data.length
+        while (i--) {
+            if (parseInt(data[i].id) === parseInt(id)) { 
+                data.splice(i, 1);
+            } 
+        }
+    }
     
     useEffect(() => {
         fetchData();
     }, [])
 
     return (
+        <>
+        <Modal title="Вы уверены, что хотите удалить пользователя?" id={id} show={show} setShow={setShow} deleteElement={deleteElement} onClose={() => {setShow(false); document.body.style.overflow='scroll'}}/>
         <main>
             <div className="title__container">
                 <h1 className="page__title">Список пользователей</h1>
@@ -150,9 +176,10 @@ export const List = () => {
             </div>
             
             <div className="table__container">
-                <Table data={data} isLoading={isLoadingData} rowsPerPage={5}/>
+                <Table data={data} setId={setId} deleteElement={deleteElement} setShow={setShow} isLoading={isLoadingData} rowsPerPage={5}/>
             </div>
         </main>
+        </>
     )
 }
 

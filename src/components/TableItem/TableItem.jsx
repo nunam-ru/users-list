@@ -1,7 +1,8 @@
 import React from 'react';
 import deleteRowImg from '../../media/delete.svg';
 
-const TableItem = ({id, username, email, rating, registration_date}) => {
+const TableItem = ({id, username, email, rating, registration_date, deleteElement, setShow, setId}) => {
+
     return (
         <tr className="table__row" id={id}>
             <td className="table__id">
@@ -20,7 +21,7 @@ const TableItem = ({id, username, email, rating, registration_date}) => {
                 {rating}
             </td>
             <td className="table__delete">
-                <button className="row_delete">
+                <button className="row_delete" onClick={() => {setId(id); setShow(true); document.body.style.overflow='hidden'}}>
                     <img src={deleteRowImg} alt="delete" loading="lazy"></img>
                 </button>
             </td>

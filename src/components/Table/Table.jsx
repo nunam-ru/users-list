@@ -4,7 +4,7 @@ import TableItem from "../TableItem/TableItem";
 import useTable from "../../hooks/useTable";
 import TableFooter from "../TableFooter/TableFooter";
 
-const Table = ({data, isLoading, rowsPerPage}) => {
+const Table = ({data, isLoading, rowsPerPage, deleteElement, setShow, setId}) => {
 
     const [page, setPage] = useState(1);
     const { slice, range } = useTable(data, page, rowsPerPage);
@@ -42,7 +42,9 @@ const Table = ({data, isLoading, rowsPerPage}) => {
                         email={element.email}
                         registration_date={element.registration_date}
                         rating={element.rating}
-                        />
+                        deleteElement={deleteElement}
+                        setShow={setShow}
+                        setId={setId}/>
                 )
                 }
                 </tbody>
